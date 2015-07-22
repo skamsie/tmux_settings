@@ -10,14 +10,14 @@ import datetime
 from dateutil import parser
 import sys
 
-
 WD = os.path.join(os.path.dirname(__file__), 'weather_data.json')
 CITY_URLS = {
     # add your city url here
     'bucharest': 'http://www.accuweather.com/en/ro/bucharest/287430/weather-forecast/287430',
     'berlin': 'http://www.accuweather.com/en/de/berlin/10178/weather-forecast/178087',
     'lisbon': 'http://www.accuweather.com/en/pt/lisbon/274087/weather-forecast/274087',
-    'london': 'http://www.accuweather.com/en/gb/london/ec4a-2/weather-forecast/328328'
+    'london': 'http://www.accuweather.com/en/gb/london/ec4a-2/weather-forecast/328328',
+    'barcelona': 'http://www.accuweather.com/en/es/barcelona/307297/weather-forecast/307297'
 }
 
 
@@ -45,8 +45,9 @@ def _check_if_update_is_needed(weather_data, city, interval=1200):
     except KeyError:
         return True
 
+
 def write_weather_data(url, weather_data_file, city):
-    """Dumps data to json.
+    """Dumps weather data to json.
 
     :param url: str
     :param weather_data_file: str
@@ -63,6 +64,8 @@ def write_weather_data(url, weather_data_file, city):
             data[city] = weather_dict
             f.seek(0)
             json.dump(data, f, indent=4)
+            f.truncate()
+
 
 def return_weather_data(weather_data_file, city):
     """Returns city name, current temperature and condition.
@@ -78,12 +81,18 @@ def return_weather_data(weather_data_file, city):
                                       weather['text'])
     return weather_info
 
+
 def main(cities):
+    """Main function.
+
+    cities: list
+    """
     x = ''
     for i in cities:
         write_weather_data(CITY_URLS[i.lower()], WD, i)
         x += ' | ' + return_weather_data(WD, i).encode('UTF-8')
     print x.lstrip(' | ')
+
 
 if __name__ == '__main__':
     main(sys.argv[1:])
