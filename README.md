@@ -10,4 +10,4 @@ Contains:
 -  track that is currently playing on Spotify (works only on OSX)
 
 
-![alt tag](http://postimg.org/image/6wjeozmz9/)  
+![alt tag](http://s18.postimg.org/ywni99qft/tmux_settings.png)  
