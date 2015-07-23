@@ -1,4 +1,4 @@
-# tmux_settings
+# tmux settings
 
 Copy he contents of the repository to your home folder.
 
