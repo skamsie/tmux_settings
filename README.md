@@ -1,6 +1,6 @@
 # tmux settings
 
-Copy he contents of the repository to your home folder.
+Copy the contents of the repository to your home folder.
 
 Contains:
 
